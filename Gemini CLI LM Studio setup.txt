@@ -1,0 +1,39 @@
+✦ To use a local model running in LM Studio with the Gemini CLI, follow these steps:
+
+  1. Start LM Studio Local Server
+   1. Launch LM Studio and download/load your model of choice.
+   2. Go to the Local Server tab (the double-headed arrow icon in the left panel).
+   3. Select your model from the top dropdown.
+   4. Note the port (default: 1234) and the Server URL (typically http://localhost:1234).
+   5. Click Start Server.
+
+  ---
+
+  2. Configure Environment Variables
+  The Gemini CLI needs to be redirected to your local server instead of the official Gemini API endpoints. Set the
+  following environment variables:
+
+  On Windows (PowerShell)
+
+   1 # Redirect API requests to LM Studio's OpenAI-compatible endpoint
+   2 $env:GOOGLE_GEMINI_BASE_URL="http://127.0.0.1:1234/v1" or http://localhost:1234/api/v1 or http://localhost:1234/v1
+   3
+   4 # Set a dummy key (Gemini CLI requires an API key to be defined to initialize)
+   5 $env:GEMINI_API_KEY="lm-studio"
+   6
+   7 # (Optional) Specify your loaded model's exact identifier from LM Studio
+   8 $env:GEMINI_MODEL="google/gemma-4-e4b"
+
+  On macOS / Linux (Bash or Zsh)
+
+   1 export GOOGLE_GEMINI_BASE_URL="http://localhost:1234/v1"
+   2 export GEMINI_API_KEY="lm-studio"
+   3 export GEMINI_MODEL="your-local-model-identifier"
+
+  ---
+
+  3. Verify the Connection
+  Run a quick prompt to verify that Gemini CLI is routing requests to your local instance:
+   1 gemini -p "Hello!"
+  You will see the incoming request logs populate in the LM Studio local server console, and the output will print in
+  your terminal.

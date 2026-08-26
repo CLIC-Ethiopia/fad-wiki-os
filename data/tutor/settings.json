@@ -1,0 +1,17 @@
+{
+  "geminiApiKey": "",
+  "models": {},
+  "temperature": 0.7,
+  "maxOutputTokens": 8192,
+  "memoryEnabled": true,
+  "activePersona": null,
+  "defaultKb": null,
+  "personalInfo": {
+    "interests": "i like farming vegetables and running small local business",
+    "learningNeeds": "i am visual learner, i understand concepts when simplified and supported with examples",
+    "goal": "i want to build hydroponics vertical farming green house  for city farming business",
+    "industry": "Agriculture",
+    "secondaryIndustry": "Vertical Farming",
+    "difficulty": "Intermediate"
+  }
+}

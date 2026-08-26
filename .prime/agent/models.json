@@ -1,0 +1,20 @@
+{
+    "providers": {
+        "ollama": {
+            "baseUrl": "http://127.0.0.1:61448/v1",
+            "api": "openai-completions",
+            "apiKey": "lm-studio",
+            "compat": {
+                "supportsDeveloperRole": false,
+                "supportsReasoningEffort": false
+            },
+            "models": [
+                {
+                    "id": "google/gemma-4-e4b",
+                    "contextWindow": 131072,
+                    "maxTokens": 8192
+                }
+            ]
+        }
+    }
+}

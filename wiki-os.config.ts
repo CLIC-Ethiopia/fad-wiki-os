@@ -1,0 +1,20 @@
+import type { WikiOsConfigInput } from "./src/lib/wiki-config";
+
+const config: WikiOsConfigInput = {
+  siteTitle: "Fad.Wiki",
+  tagline: "Plug-and-play Obsidian wiki for search, browsing, and local knowledge graphs.",
+  searchPlaceholder: "Search concepts, ideas, and notes...",
+  homepage: {
+    labels: {
+      featured: "Discover",
+      topConnected: "Most Connected",
+      people: "People",
+      recentPages: "Recently Added",
+    },
+  },
+  people: {
+    mode: "explicit",
+  },
+};
+
+export default config;
