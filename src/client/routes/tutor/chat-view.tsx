@@ -3,6 +3,7 @@ import { Composer } from "./composer";
 import { ToolActivity } from "./tool-activity";
 import { useTutorStore } from "../../store/tutor-store";
 import { MarkdownRenderer } from "./markdown-renderer";
+import { TutorFooter } from "./tutor-footer";
 
 export function Component() {
   const { settings, chatMessages: messages, setChatMessages: setMessages, chatSessionId: activeSessionId, setChatSessionId: setActiveSessionId } = useTutorStore();
@@ -271,6 +272,7 @@ export function Component() {
             </div>
           </div>
         )}
+        <TutorFooter />
         <div ref={messagesEndRef} />
       </div>
 

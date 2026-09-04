@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "tasks to improve FadiWki code.md",
-                "mode": "preview",
+                "file": "Clippings/Everything Claude Code (ECC) Open-Source Framework Guide 1.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "tasks to improve FadiWki code"
+              "title": "Everything Claude Code (ECC) Open-Source Framework Guide 1"
             }
           },
           {
@@ -235,6 +235,9 @@
   },
   "active": "02499710748281d3",
   "lastOpenFiles": [
+    "Clippings/Everything Claude Code (ECC) Open-Source Framework Guide.md",
+    "Clippings/Everything Claude Code (ECC) Open-Source Framework Guide 1.md",
+    "tasks to improve FadiWki code.md",
     "Business ideas by chatgpt.md",
     "github-cheat-sheet.pdf",
     "learn_python-summary.md",
@@ -248,7 +251,6 @@
     "ai-agents-cheat-sheet.pdf.crdownload",
     "claude_academy_learning_guide.md",
     "siili_handbook_cheatsheet.md.crdownload",
-    "tasks to improve FadiWki code.md",
     "wsl Command-line cheat sheet.md",
     "Industry/Construction/30 Profitable Construction Business Ideas to Start.md",
     "Clippings/Markdown Cheat Sheet  Markdown Guide.md",
@@ -268,7 +270,6 @@
     "copilot/copilot-custom-prompts/Clip YouTube Transcript.md",
     "Clippings/SKILL.md",
     "Clippings/Paperclip Quick-Start - Free Preview.md",
-    "Clippings/How the Open Knowledge Format can improve data sharing.md",
-    "Clippings/DeepTutor-Info.md"
+    "Clippings/How the Open Knowledge Format can improve data sharing.md"
   ]
 }

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useTutorStore } from "../../store/tutor-store";
 import { MarkdownRenderer } from "./markdown-renderer";
+import { TutorFooter } from "./tutor-footer";
 
 interface QuizQuestion {
   id: number;
@@ -206,6 +207,8 @@ export function Component() {
             </div>
           </div>
         </div>
+
+        <TutorFooter />
       </div>
     );
   }
@@ -260,6 +263,8 @@ export function Component() {
             </button>
           </div>
         </div>
+
+        <TutorFooter />
       </div>
     );
   }
@@ -445,6 +450,7 @@ export function Component() {
 
         </div>
 
+        <TutorFooter />
       </div>
     </div>
   );

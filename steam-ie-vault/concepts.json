@@ -1,0 +1,311 @@
+{
+  "aws-wa": {
+    "title": "AWS Well-Architected Framework",
+    "subtitle": "Build secure, high-performing, resilient, and efficient infrastructure.",
+    "intro": "The AWS Well-Architected Framework provides a consistent approach to evaluate architectures and implement designs that scale over time. It is structured around six core pillars: Operational Excellence, Security, Reliability, Performance Efficiency, Cost Optimization, and Sustainability [192, 209]. This framework serves as a guide for cloud architects to treat non-adhered best practices as technical debt and business risks to be continuously monitored and improved [209].",
+    "pillars": {
+      "Operational Excellence": {
+        "definition": "The ability to support development and run workloads effectively, gain insight into their operations, and to continuously improve supporting processes and procedures to deliver business value [242].",
+        "key_practices": [
+          "Organize teams around business outcomes using people, process, and technology capabilities to scale and adapt [242].",
+          "Implement observability for actionable insights, leveraging telemetry to proactively improve performance, reliability, and cost [242].",
+          "Safely automate where possible, defining the entire workload as code with safety guardrails like rate control and error thresholds [242].",
+          "Make frequent, small, reversible changes to loosely coupled components, reducing blast radius and allowing fast reversal [242]."
+        ]
+      },
+      "Security": {
+        "definition": "The ability to protect data, systems, and assets to improve security posture by taking advantage of cloud technologies [243].",
+        "key_practices": [
+          "Implement a strong identity foundation based on least privilege and separation of duties [243].",
+          "Maintain traceability by monitoring, alerting, and auditing actions and changes in real-time [243].",
+          "Apply security at all layers using a defense-in-depth approach (network edge, VPC, compute instances, code) [243].",
+          "Automate security best practices by managing controls as code in version-controlled templates [243].",
+          "Protect data in transit and at rest using encryption, tokenization, and access control [243].",
+          "Keep people away from data to reduce the risk of manual processing errors and mishandling [243]."
+        ]
+      },
+      "Reliability": {
+        "definition": "The ability of a workload to perform its intended function correctly and consistently, including operating and testing through its total lifecycle [244].",
+        "key_practices": [
+          "Automatically recover from failure by monitoring KPIs and triggering automated healing [244].",
+          "Test recovery procedures by using automation to simulate AZ, region, or component failures [244].",
+          "Scale horizontally to increase aggregate workload availability and eliminate single points of failure [244].",
+          "Stop guessing capacity needs, scaling dynamically to satisfy demand without over- or under-provisioning [244]."
+        ]
+      },
+      "Performance Efficiency": {
+        "definition": "The ability to use computing resources efficiently to meet system requirements and maintain that efficiency as demand changes and technologies evolve [245].",
+        "key_practices": [
+          "Democratize advanced technologies by delegating complex tasks (NoSQL, ML) to the cloud vendor as managed services [245].",
+          "Go global in minutes by deploying workloads in multiple AWS Regions to provide low latency and a better user experience [245].",
+          "Use serverless architectures to eliminate the operational burden of managing physical servers and reduce costs [245].",
+          "Experiment more often by carrying out comparative testing across different instance types and storage configurations [245]."
+        ]
+      },
+      "Cost Optimization": {
+        "definition": "The ability to run systems to deliver business value at the lowest price point [248].",
+        "key_practices": [
+          "Practice Cloud Financial Management (CFM) to align organizational spend with business value [248].",
+          "Ensure expenditure and usage awareness through detailed billing and cost management tools like AWS Budgets and AWS Cost Explorer [211, 232, 248].",
+          "Select resource types, sizes, and quantities automatically based on performance metrics to avoid over-provisioning [232, 311, 326].",
+          "Incorporate schedule-based scaling for predictable usage pattern peaks (seasonal, month-end, or year-end) [230]."
+        ]
+      },
+      "Sustainability": {
+        "definition": "The ability to continually improve sustainability impacts by reducing energy consumption and increasing efficiency across all components of a workload [248].",
+        "key_practices": [
+          "Understand your impact by measuring and modeling the future impact of your cloud workloads, establishing KPIs per unit of work [248].",
+          "Establish long-term sustainability goals, planning for growth that reduces impact intensity (emissions per transaction) [248].",
+          "Select Regions near renewable energy projects or where the grid has a low carbon intensity [329].",
+          "Use serverless technologies, right-size instances, and adopt instance families with purpose-built hardware like AWS Trainium and Inferentia [339]."
+        ]
+      }
+    },
+    "key_design_principles": [
+      "Stop guessing capacity needs to prevent expensive idle resources or performance limits [241].",
+      "Test systems at production scale on demand, decommissioning resources afterwards to minimize cost [241].",
+      "Automate with architectural experimentation in mind to track changes and replicate workloads cleanly [241].",
+      "Consider evolutionary architectures, permitting cloud systems to evolve as business requirements change [241].",
+      "Drive architectures using data, collecting observability telemetry on workload behavior to make fact-based decisions [241]."
+    ],
+    "takeaways": [
+      "Operational Excellence: Safely automate procedures, implement comprehensive dashboards, and prioritize regular workload reviews [212, 214, 227].",
+      "Security: Separate workloads using multiple accounts, enforce Least Privilege, manage keys securely, and keep public endpoints secure [218, 219, 222].",
+      "Reliability: Build high-availability architectures across multiple Availability Zones, implement database clustering, and automate failure testing [220, 228, 306].",
+      "Performance Efficiency: Monitor system resources to ensure performance requirements are met, and select purpose-built databases [226, 234, 317].",
+      "Cost Optimization: Right-size compute, optimize storage tiers (S3 Intelligent-Tiering/Glacier), and leverage scheduling [229, 232, 311].",
+      "Sustainability: Align SLAs with sustainability goals, transition to managed services, and implement storage lifecycle policies [233, 234, 235, 237]."
+    ]
+  },
+  "azure-wa": {
+    "title": "Azure Well-Architected Framework",
+    "subtitle": "Improve the quality of a workload with guiding tenets and architectural decision points.",
+    "intro": "The Azure Well-Architected Framework consists of quality-driven tenets, architectural decision points, and review tools intended to help solution architects build a technical foundation for their workloads on Azure [4]. It focuses on building reliable, secure, and performant workloads that maximize the value of investment over time [4].",
+    "pillars": {
+      "Reliability": {
+        "description": "Ensures that the workload meets the uptime and recovery targets (RTO/RPO) by building redundancy and resiliency at scale [6].",
+        "practices": [
+          "Incorporate multi-region active-active or active-passive topologies to ensure always-available, mission-critical systems [6, 7].",
+          "Build redundancy across Availability Zones and fault domains to prevent localized hardware failures from causing outages [6]."
+        ]
+      },
+      "Security": {
+        "description": "Protect the workload from attacks by maintaining data confidentiality and integrity through Zero Trust tenets [6, 194].",
+        "practices": [
+          "Implement unified identity management and govern access tightly using Microsoft Entra ID [178].",
+          "Apply network isolation and threat detection capabilities across all workload resources [6]."
+        ]
+      },
+      "Cost Optimization": {
+        "description": "Adopt an optimization mindset at organizational, architectural, and tactical levels to keep spending within budget [6].",
+        "practices": [
+          "Use cost-effective parameters and optimization tools like Azure Advisor and Microsoft Cost Management [4, 6].",
+          "Understand workload patterns to optimize licensing costs and provision appropriate resource tiers [6]."
+        ]
+      },
+      "Operational Excellence": {
+        "description": "Reduce issues in production by building holistic observability and automated systems [6].",
+        "practices": [
+          "Enforce a strict code-to-cloud delivery model where all changes go through the IaC CI/CD chain, maintaining portals as read-only [40].",
+          "Build multi-dimensional dashboards focusing on infrastructure health, pipeline performance, and policy compliance [41]."
+        ]
+      },
+      "Performance Efficiency": {
+        "description": "Adjust to changes in demands placed on the workload through horizontal scaling and structured performance testing [6].",
+        "practices": [
+          "Optimize resource allocation using performance analytics tools [6].",
+          "Test systems under production-equivalent loads before deploying updates [6]."
+        ]
+      }
+    },
+    "workloads_and_tools": {
+      "Microsoft Fabric": "An analytical data platform that enables unified, enterprise-scale data analytics, data warehousing, and lakehouse architectures in compliance with Well-Architected tenets [7].",
+      "Azure Advisor": "An interactive assessment tool that analyzes Azure deployments and provides personalized recommendations based on the Well-Architected pillars [4].",
+      "Cloud Adoption Framework": "Provides complementary tools, templates, assessments (like the Strategic Migration Assessment and Readiness Tool - SMART), and naming guidelines to accelerate cloud migration [180, 181, 182]."
+    },
+    "takeaways": [
+      "Quality-Driven Design: Workloads must be designed to continuously achieve business value over time, utilizing structured assessment tools [4].",
+      "Observability and Governance: Holistic observability must cover system metrics, CI/CD pipeline performance, and automated compliance policies [41].",
+      "Read-Only Portals: Bypassing IaC through portal 'ClickOps' represents a key risk; portals should serve as read-only environments [40]."
+    ]
+  },
+  "gcp-wa": {
+    "title": "Google Cloud Architecture Framework",
+    "subtitle": "Design for change. Simplify with managed services.",
+    "intro": "The Google Cloud Architecture Framework provides validated recommendations and design principles for building secure, efficient, resilient, high-performing, cost-effective, and sustainable workloads on GCP [29]. It is curated to reflect expanding cloud capabilities, industry best practices, and community knowledge [29].",
+    "core_principles": {
+      "Design for change": "Architect systems that can easily evolve. Avoid rigid integrations and plan for continuous updates [28].",
+      "Document your architecture": "Establish a common language, standards, and records of design choices to enable cross-functional team collaboration [28, 33].",
+      "Simplify your design and use fully managed services": "Leverage serverless and fully managed services to minimize the risk, time, and operational complexity of maintaining baseline systems [28, 34].",
+      "Decouple your architecture": "Build loosely coupled systems where components are isolated and interact via well-defined APIs to increase overall resilience and agility [28, 290, 292].",
+      "Use a stateless architecture": "Decouple stateful data from core application logic, offloading session state to databases, external files, or caches to increase scalability and reliability [28, 293]."
+    },
+    "pillars": {
+      "Operational Excellence": "Deploy, operate, monitor, and manage cloud workloads efficiently [31]. Encompasses Ensuring operational readiness, change automation, and managing incidents using CloudOps [18].",
+      "Security, Privacy, and Compliance": "Maximize security of data and workloads, design for privacy, and meet regulatory standards by implementing Zero Trust (BeyondCorp) and shift-left security [18, 31, 196].",
+      "Reliability": "Design and operate resilient, highly available workloads. Set realistic targets, leverage zonal/regional/global archetypes, build redundancy, and perform failure testing [19, 21, 31].",
+      "Cost Optimization": "Maximize the business value of investments in Google Cloud by optimizing continuously, building a cost-aware culture, and aligning spending with business values [20, 31].",
+      "Performance Optimization": "Tune resources for optimal performance by planning resource allocation, promoting modular designs, and leveraging cloud elasticity [20, 31, 32].",
+      "Sustainability": "Build and manage cloud workloads that are environmentally sustainable by utilizing low-carbon regions, writing energy-efficient software, and optimizing storage data footprint [20, 32]."
+    },
+    "takeaways": [
+      "Statelessness & Decoupling: Extreme scalability and global load balancing are unlocked by designing state-free compute tiers and loosely coupled asynchronous components [28, 196].",
+      "Serverless Priority: Start simple by leveraging fully managed serverless offerings to eliminate server maintenance and reduce overhead [34, 287].",
+      "Low-Carbon Execution: Sustainability goals are achieved by deploying workloads to carbon-aware, low-carbon Google regions [20]."
+    ]
+  },
+  "data-eng": {
+    "title": "Data Engineering on Cloud",
+    "subtitle": "Building robust, high-throughput, at-scale analytics pipelines.",
+    "intro": "Modern cloud data engineering focuses on designing pipelines that separate compute and storage, utilize unified batch/streaming engines, and enable self-service analytics [198, 200]. It encompasses building decentralized topologies to prevent data silos [198, 199].",
+    "core_concepts": {
+      "Data Mesh on Google Cloud": "A decentralized architecture pattern that organizes data ownership by business domains. Core functions include designing self-service data platforms, building validated data products, and establishing centralized data discovery and consumption [23, 25, 198].",
+      "Microsoft Fabric Analytical Workloads": "A unified SaaS solution that enables end-to-end at-scale data analytics, lakehouse configurations, and business intelligence on Azure [7].",
+      "Unified Processing and Storage": "Separating compute from storage using compressed formats (Delta Lake, Apache Iceberg) on Object Storage (S3, Cloud Storage, ADLS) [200]. Processing relies on unified engines like Apache Beam/Dataflow [200].",
+      "Data Governance": "Utilizing centralized tools such as GCP Dataplex, AWS Lake Formation, or Azure Policy to enforce unified security, access control, and metadata catalogs [200]."
+    },
+    "architecture_patterns": [
+      "Streaming ingestion utilizing robust message buses (Google Cloud Pub/Sub, Azure Event Hubs, AWS Kinesis) [199].",
+      "Automated cross-cloud open data lakehouses integrating disparate multi-cloud storage tiers [23].",
+      "Serverless ETL pipelines utilizing Cloud Dataflow, Dataproc, and BigQuery warehouses [199]."
+    ],
+    "grounded_rules": [
+      "Always compress data files (such as GZIP/Parquet/ORC) before uploading to Object Storage to minimize storage costs and accelerate query throughput [334, 336].",
+      "Keep application code close to the storage tier for data-heavy analytics, minimizing data transfer charges and network latency [331]."
+    ]
+  },
+  "data-sci": {
+    "title": "Cloud Data Science",
+    "subtitle": "High-performance collaborative workspaces and automated pipelines.",
+    "intro": "Cloud platforms offer infinite elasticity to scale data science compute beyond single-machine memory constraints [200, 201]. They enable collaborative workspaces where experiments, models, and features are fully managed and tracked [201].",
+    "core_components": {
+      "Collaborative Workspaces": "Leveraging platforms like Azure Databricks, Vertex AI, and SageMaker Studio to share managed notebooks, coordinate clusters, and automate environments [3, 200, 201].",
+      "Distributed Compute": "Utilizing managed Spark or Ray clusters to process petabyte-scale feature engineering, model training, and data preparation [200, 201].",
+      "Agentic AI Automation": "Leveraging AI agents and agentic orchestrations to automate complex, repetitive data science workflows like automated data cleaning, feature engineering, and pipeline execution [23, 201]."
+    },
+    "takeaways": [
+      "Experiment Tracking: Continuously track parameters, metrics, artifacts, and training runs to build reproducible pipelines [201].",
+      "Compute Demanded: Move away from fixed compute resources and utilize ephemeral, auto-scaled clusters that exist only for the duration of the training execution [172]."
+    ]
+  },
+  "mlops": {
+    "title": "Machine Learning Operations (MLOps)",
+    "subtitle": "Continuous delivery, automation, and custom silicon optimization.",
+    "intro": "MLOps brings software engineering and DevOps principles to machine learning workloads. It focuses on automating model training, evaluation, validation, deployment, and performance monitoring under structured CI/CD pipelines [25, 202].",
+    "mlops_pipeline_stages": {
+      "Continuous Integration (CI)": "Automating template verification, parameter validation, and unit tests of training code upon code commit [25, 202].",
+      "Continuous Delivery (CD)": "Continuous deployment pipelines delivering models, metadata, and APIs across staging and production tiers [25, 202]. Works with frameworks like TensorFlow Extended (TFX), Vertex Pipelines (Agent Platform), and Cloud Build [25, 202].",
+      "Continuous Monitoring (CM)": "Monitoring model performance in production, tracking prediction distribution, and automatically triggering retraining upon detecting data drift or performance degradation [202]."
+    },
+    "hardware_efficiency_accelerators": {
+      "Custom Silicon Accelerators": "AWS Trainium and Inferentia (e.g. Inf2 instances) offer specialized hardware optimized specifically for deep learning training and inference workloads [202, 339].",
+      "Sustainability Impact": "AWS Inf2 instances offer up to 50% better performance per watt compared to comparable standard EC2 instances, drastically reducing both operational costs and the carbon footprint of AI workloads [202, 339]."
+    },
+    "best_practices": [
+      "Simultaneously version code, training data, and resulting model weights to ensure auditing and absolute reproducibility [202].",
+      "Leverage tools like Amazon SageMaker AI Inference Recommender to find the right-sized, cost-effective inference endpoints [339]."
+    ]
+  },
+  "genai": {
+    "title": "Generative AI & LLMs",
+    "subtitle": "Enterprise RAG architectures, secure orchestrations, and Responsible AI.",
+    "intro": "Deploying Generative AI and Large Language Models (LLMs) in enterprise environments requires a deep focus on scalability, security, lifecycle management, and Responsible AI [5]. It demands strict federated access, secure pipelines, and grounding designs [203, 204].",
+    "reference_architectures": {
+      "Retrieval-Augmented Generation (RAG)": "Grounding generative models in enterprise truths to prevent hallucinations. RAG architectures securely integrate LLMs with private databases, converting documents into vector embeddings [24, 203].",
+      "GCP pgvector Implementation": "RAG infrastructure leveraging Vertex AI embeddings, AlloyDB pgvector, and LangChain for highly accurate semantic search [24, 204].",
+      "GCP Spanner Graph (GraphRAG)": "Advanced GraphRAG reference architecture utilizing Spanner Graph and Agent Platform to enable highly connected, context-aware orchestrations across complex datasets [23, 24].",
+      "AWS Multi-Tenant Bedrock Pattern": "Enterprise multi-tenant generative AI applications on AWS using Amazon Bedrock, Amazon Q Business, and AWS IAM Identity Center for secured federated data access [204, 205]."
+    },
+    "critical_guardrails": [
+      "Responsible AI: Build intelligent apps with deep baselines for safety, data privacy, and ethical compliance [5]. Never train models on raw, sensitive PII data without strict anonymization and encryption [204].",
+      "Agentic Workflows: Give LLMs structured tools to perform actions, execute APIs, and query backend systems using private, secure network connections [24, 204]."
+    ]
+  },
+  "iac-native": {
+    "title": "Native IaC Frameworks",
+    "subtitle": "Provider-specific declarative infrastructure automation.",
+    "intro": "Native Infrastructure as Code frameworks are built and deeply maintained by the cloud providers. They offer zero-day support for new cloud resources, deep platform integrations, and simplified state management without external dependencies [83, 205].",
+    "frameworks": {
+      "AWS CloudFormation": {
+        "description": "Declarative templates written in YAML or JSON that define the desired state of AWS infrastructure [81, 302].",
+        "key_features": [
+          "CloudFormation StackSets: Deploys consistent templates across multiple AWS accounts and regions in a single, atomic operation [78, 82].",
+          "AWS CloudFormation Guard: A policy-as-code validation tool integrated into pipelines to prevent misconfigured resources from reaching production [84, 272]."
+        ]
+      },
+      "Azure Bicep": {
+        "description": "A domain-specific language (DSL) for deploying Azure resources, offering clean syntax, modularization, and compile-down safety to ARM templates [38, 205]."
+      },
+      "GCP Deployment Manager": {
+        "description": "Google Cloud's native template-driven deployment service utilizing YAML, Python, or Jinja2 configurations [205]."
+      },
+      "AWS Cloud Development Kit (CDK)": {
+        "description": "An open-source software development framework to model and provision cloud resources using general-purpose programming languages like TypeScript, Python, Java, and .NET [302].",
+        "case_study_inheritance": [
+          "In real-world migrations, CDK enables developers to use Object-Oriented programming concepts like Inheritance [142, 150].",
+          "A base class defines common infrastructure representations (database instances, storage buckets) [150].",
+          "Individual environment child classes (Testing, Staging, Production) inherit from the base class and substitute environment-specific parameters [150].",
+          "This ensures strict adherence to the DRY (Don't Repeat Yourself) coding principle and significantly accelerates deployment consistency [149, 150]."
+        ]
+      }
+    }
+  },
+  "iac-agnostic": {
+    "title": "Agnostic IaC Platforms",
+    "subtitle": "Multi-cloud resource provisioning, State tracking, and GitOps workflows.",
+    "intro": "Cloud-agnostic IaC platforms abstract provider-specific details behind consistent interfaces, allowing organizations to manage heterogeneous, multi-cloud environments (AWS, Azure, GCP, SaaS) from a single codebase [45, 83, 114].",
+    "core_platforms": {
+      "Terraform": {
+        "description": "A declarative IaC framework utilizing HashiCorp Configuration Language (HCL) and provider-based architectures [173, 206].",
+        "state_management": [
+          "State Files (.tfstate) serve as the absolute document tracking what was actually deployed in the cloud [50, 206].",
+          "It calculates deltas between the desired state in code and actual deployed state to optimize execution (idempotence) [50, 92].",
+          "Shared environments must GitIgnore state files and configure secure, centralized remote backends with state-locking [37, 206]."
+        ]
+      },
+      "Pulumi & Ansible": {
+        "description": "Pulumi allows defining multi-cloud infrastructure using standard programming languages [45, 166]. Ansible focuses on task automation, hybrid configurations, and software setup [36]."
+      }
+    },
+    "gitops_workflow": {
+      "definition": "A pull-based deployment model where Git is the single source of truth for desired state [37].",
+      "tools": "ArgoCD and Flux continuously monitor the repository, automatically applying changes and reconciling actual infrastructure state with code [37]."
+    },
+    "validation_and_testing": "Pipelines incorporate automated formatting (terraform validate), linting (TFLint), static analysis scans (tfsec, Checkov), and Policy as Code (OPA) [36, 40]."
+  },
+  "iac-pitfalls": {
+    "title": "IaC Critical Pitfalls & Remediation",
+    "subtitle": "Overcoming ClickOps, Infrastructure Drift, Monolith States, and Security Smells.",
+    "intro": "Improper management of Infrastructure as Code introduces code debt and major security vulnerabilities. Mature cloud environments demand proactive remediation strategies and automated pipelines [8, 207].",
+    "critical_pitfalls": {
+      "ClickOps & Manual Interventions": {
+        "description": "Bypassing IaC pipelines to make direct modifications via cloud web consoles or CLIs [12, 299]. Accounts for nearly 90% of infrastructure divergence cases [12].",
+        "root_causes": "Incident emergency troubleshooting under outage stress, or complex approval pipelines driving practitioners to take shortcuts [12].",
+        "remediation": "Restrict direct console write access. Set portals to read-only [40]. Implement temporary OIDC tokens for short-lived pipeline execution [12]."
+      },
+      "Infrastructure Drift vs Configuration Drift": {
+        "description": "Divergence between the IaC configurations (desired state) and actual deployed resources [9].",
+        "distinction": "Infrastructure drift involves entire resources created/deleted outside workflows; configuration drift concerns altered settings (like open firewall ports or database tier changes) [9].",
+        "remediation": "Configure background drift detection monitors (such as AWS Config or env0 scheduled scans) [10, 40, 53]."
+      },
+      "Redundant Code (The WET Anti-pattern)": {
+        "description": "Copy-pasting duplicate templates across directories for dev, staging, and prod [47, 149].",
+        "remediation": "Modularize code [51]. Leverage wrappers like Terragrunt which organize files into a single DRY configuration customized by environment parameter files [48]."
+      },
+      "Monolithic State Files": {
+        "description": "Jaming an entire organization's cloud resources into one giant state file [50, 51].",
+        "impact": "Degrades execution performance, increases blast radius, and slows down development cycles [50, 51].",
+        "remediation": "Modular Programming. Split resources by lifecycle boundaries (networking, storage, compute) into independent workspaces with isolated states [51, 153]."
+      },
+      "Security Smells & Misconfigurations": {
+        "description": "Vulnerabilities directly written into IaC definition files [49, 154].",
+        "common_smells": [
+          "Invalid IP address bindings (opening security groups/firewalls to 0.0.0.0/0 on port 22/3389) [154, 155].",
+          "Stating default credentials or hardcoding database passwords directly inside source files [154, 155].",
+          "Omiting security parameters, resulting in default-permit-all firewall creations [49]."
+        ],
+        "remediation": "Never commit secrets to repositories; utilize secure cloud secret managers [154, 155]. Run pre-deployment static analysis scans and Policy as Code rules (Open Policy Agent) to fail non-compliant builds before they provision [46, 49]."
+      }
+    }
+  }
+}

@@ -16,6 +16,7 @@ import {
   ChevronRight,
   TrendingUp
 } from "lucide-react";
+import { TutorFooter } from "./tutor-footer";
 
 interface HourAllocation {
   hour: number;
@@ -154,15 +155,13 @@ export function Component() {
   };
 
   const toggleQuizQuestionCompleted = (index: number) => {
-    setQuizAnswers(prev => {
-      const next = { ...prev };
-      if (next[index] !== undefined) {
-        delete next[index];
-      } else {
-        next[index] = 0; // mark answered with default option
-      }
-      return next;
-    });
+    const next = { ...quizAnswers };
+    if (next[index] !== undefined) {
+      delete next[index];
+    } else {
+      next[index] = 0; // mark answered with default option
+    }
+    setQuizAnswers(next);
   };
 
   return (
@@ -570,6 +569,8 @@ export function Component() {
             )}
           </div>
         )}
+
+        <TutorFooter />
       </div>
     </div>
   );

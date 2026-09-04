@@ -351,11 +351,15 @@ export async function getDerivedData(deps: WikiQueryDependencies): Promise<Deriv
     .sort((a, b) => b.modifiedAt - a.modifiedAt)
     .find(page => page.file.includes('notes/') || page.file.includes('notes\\'));
 
+  const totalNotesCount = pageSummaries.filter(p => p.file.toLowerCase().includes('notes/') || p.file.toLowerCase().includes('notes\\')).length;
+
   const derivedData: DerivedData = {
     stats: {
       total_pages: totals.totalPages,
       total_words: totals.totalWords,
       top_backlinks: topBacklinks,
+      categories: categories.map(c => ({ name: c.name, count: c.count })),
+      total_notes: totalNotesCount,
     },
     homepage: {
       totalPages: totals.totalPages,

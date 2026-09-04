@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useTutorStore } from "../../store/tutor-store";
+import { TutorFooter } from "./tutor-footer";
 
 const INDUSTRIES: Record<string, string[]> = {
   "Agriculture": ["Crop Production", "Animal Husbandry", "AgTech", "Forestry", "Aquaculture", "Vertical Farming", "Precision Agriculture", "Agrochemicals", "Farm Machinery"],
@@ -210,6 +211,7 @@ export function Component() {
           </div>
         </div>
 
+        <TutorFooter />
       </div>
     </div>
   );

@@ -1,0 +1,221 @@
+{
+  "aws-wa": {
+    "title": "AWS Well-Architected Framework",
+    "subtitle": "Stop guessing capacity and automate architectural experimentation.",
+    "intro": "The AWS Well-Architected Framework helps cloud architects build secure, high-performing, resilient, and efficient infrastructure. It is built around six core pillars: Operational Excellence, Security, Reliability, Performance Efficiency, Cost Optimization, and Sustainability. The framework provides a consistent approach to evaluate architectures and implement designs that scale over time.",
+    "video_url": "https://www.youtube.com/embed/5T7Y0n_LdUM",
+    "blogs": [
+      {
+        "title": "AWS Architecture Blog",
+        "url": "https://aws.amazon.com/blogs/architecture/",
+        "snippet": "Official blog from AWS consistently publishing articles on well-architected patterns, cost optimization strategies, and new framework lenses."
+      },
+      {
+        "title": "Mastering AWS Well-Architected",
+        "url": "#",
+        "snippet": "A comprehensive guide walking through the six pillars, sharing best practices and personal insights for designing applications with confidence."
+      }
+    ],
+    "key_takeaways": [
+      "Operational Excellence: Automate changes and anticipate failure.",
+      "Security: Apply security at all layers and protect data in transit/at rest.",
+      "Reliability: Scale horizontally and manage change in automation.",
+      "Cost Optimization: Adopt a consumption model and measure overall efficiency."
+    ]
+  },
+  "azure-wa": {
+    "title": "Azure Well-Architected Framework",
+    "subtitle": "Quality-driven tenets and rigorous architectural decision points.",
+    "intro": "A set of guiding tenets that can be used to improve the quality of a workload. The framework consists of five pillars of architectural excellence: Reliability, Security, Cost Optimization, Operational Excellence, and Performance Efficiency. Leveraging Azure Advisor and the Well-Architected Review tool ensures your environment is continually assessed.",
+    "video_url": "https://www.youtube.com/embed/XqCqU_eTqSg",
+    "blogs": [
+      {
+        "title": "Microsoft Learn: Azure Architecture Center",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/",
+        "snippet": "The definitive source offering comprehensive guidance, recommended practices, risk considerations, and tradeoffs for each Azure pillar."
+      },
+      {
+        "title": "Azure Well-Architected Framework in Practice",
+        "url": "#",
+        "snippet": "Practical observations and insights into applying the framework throughout the lifecycle of workloads, including how to use Azure Advisor."
+      }
+    ],
+    "key_takeaways": [
+      "Reliability: Ensure your application can meet commitments to customers.",
+      "Security: Protect against threats and govern access tightly (Zero Trust).",
+      "Cost Optimization: Maximize the value of cloud spend.",
+      "Operational Excellence: Keep systems running in production reliably."
+    ]
+  },
+  "gcp-wa": {
+    "title": "Google Cloud Architecture Framework",
+    "subtitle": "Design for change. Simplify with managed services.",
+    "intro": "Google Cloud's Architecture Framework provides best practices and design recommendations for building robust, secure, and scalable solutions on GCP. It emphasizes decoupling systems, leveraging serverless and fully managed services, and adopting stateless designs for global load balancing and extreme resilience.",
+    "video_url": "https://www.youtube.com/embed/PjE5FfQdYAI",
+    "blogs": [
+      {
+        "title": "Google Cloud Blog: Architecture Framework",
+        "url": "https://cloud.google.com/blog/",
+        "snippet": "Deep dives into system design, operational efficiency, and security best practices tailored for Google Cloud Platform services."
+      },
+      {
+        "title": "Building Scalable Architectures on GCP",
+        "url": "#",
+        "snippet": "Explore how to use BeyondCorp for defense in depth and Spanner for global, horizontally scalable relational databases."
+      }
+    ],
+    "key_takeaways": [
+      "System Design: Decouple architecture and use stateless designs.",
+      "Operational Excellence: Automate deployments with Cloud Build.",
+      "Security & Compliance: Implement BeyondCorp (Zero Trust) principles.",
+      "Reliability: Design for multi-region active-active topologies."
+    ]
+  },
+  "data-eng": {
+    "title": "Data Engineering on Cloud",
+    "subtitle": "Building reliable, high-throughput analytics pipelines and lakehouses.",
+    "intro": "Cloud data engineering involves designing, building, and maintaining the infrastructure for data generation, processing, and storage. From streaming data with Pub/Sub and Kafka to batch processing with Dataflow and Spark, modern data meshes and lakehouses empower decentralized, self-service analytics at scale.",
+    "video_url": "https://www.youtube.com/embed/4HqB2Z23l7A",
+    "blogs": [
+      {
+        "title": "Serverless Reference Architectures for Data Pipelines",
+        "url": "#",
+        "snippet": "Learn how to transform batch pipelines into streaming systems using Cloud Dataflow, Dataproc, and BigQuery."
+      },
+      {
+        "title": "Data Mesh Topologies in Practice",
+        "url": "#",
+        "snippet": "An exploration of decentralized data management utilizing Dataplex and automated data lakehouses for cross-cloud analytics."
+      }
+    ],
+    "key_takeaways": [
+      "Ingestion: Use robust streaming (Pub/Sub, Event Hubs, Kinesis).",
+      "Storage: Separate compute and storage using Delta Lake / Iceberg formats.",
+      "Processing: Leverage Apache Beam for unified batch and streaming.",
+      "Governance: Implement Dataplex or AWS Lake Formation for centralized policy."
+    ]
+  },
+  "data-sci": {
+    "title": "Cloud Data Science",
+    "subtitle": "Optimized analytics platforms for collaborative, high-performance execution.",
+    "intro": "Cloud platforms provide immense scalability for Data Science workloads. Utilizing tools like Azure Databricks, Vertex AI, and SageMaker Studio allows data scientists to move from Jupyter Notebooks to distributed Spark clusters seamlessly, enabling massive parallel processing for model training and feature engineering.",
+    "video_url": "https://www.youtube.com/embed/L_4RryT7o_Y",
+    "blogs": [
+      {
+        "title": "Automating Complex Data Science Pipelines",
+        "url": "#",
+        "snippet": "Using Agentic AI and orchestration platforms to automate data cleaning, feature engineering, and model evaluation."
+      }
+    ],
+    "key_takeaways": [
+      "Scalability: Move beyond single-machine memory constraints with Spark.",
+      "Collaboration: Use managed notebooks for shared environments.",
+      "Experimentation: Track ML experiments, parameters, and metrics easily."
+    ]
+  },
+  "mlops": {
+    "title": "Machine Learning Operations (MLOps)",
+    "subtitle": "Continuous delivery pipelines for machine learning.",
+    "intro": "MLOps brings DevOps practices to Machine Learning. It involves building automated CI/CD pipelines for ML models—covering everything from data validation and model training to deployment and drift detection. Utilizing hardware accelerators (TPUs, AWS Trainium) ensures cost-effective scaling.",
+    "video_url": "https://www.youtube.com/embed/H5M0Ua5G8lM",
+    "blogs": [
+      {
+        "title": "TFX & Vertex AI Pipelines",
+        "url": "#",
+        "snippet": "Building continuous delivery pipelines using TensorFlow Extended and Vertex Pipelines for automated model retraining."
+      },
+      {
+        "title": "Optimizing Deep Learning with Custom Silicon",
+        "url": "#",
+        "snippet": "How to leverage AWS Trainium and Inferentia to lower environmental impact and cost by 50% per watt."
+      }
+    ],
+    "key_takeaways": [
+      "Automation: Trigger retraining pipelines automatically on data drift.",
+      "Versioning: Version data, code, and models simultaneously.",
+      "Monitoring: Track model prediction distributions in production."
+    ]
+  },
+  "genai": {
+    "title": "Generative AI & LLMs",
+    "subtitle": "Enterprise GenAI and highly connected orchestrations.",
+    "intro": "Deploying Large Language Models (LLMs) in the enterprise requires rigorous security, federated access, and scalable architecture. Patterns like Retrieval-Augmented Generation (RAG) and GraphRAG use vector databases and graph networks to ground LLM responses in proprietary enterprise data securely.",
+    "video_url": "https://www.youtube.com/embed/d3WbZ5Z1JOs",
+    "blogs": [
+      {
+        "title": "RAG Architectures on Google Cloud",
+        "url": "#",
+        "snippet": "Implementing highly accurate semantic search using Vertex AI embeddings, AlloyDB pgvector, and LangChain."
+      },
+      {
+        "title": "Securing Enterprise LLMs on AWS",
+        "url": "#",
+        "snippet": "Multi-tenant applications using Amazon Bedrock and IAM Identity Center for secured federated access."
+      }
+    ],
+    "key_takeaways": [
+      "RAG: Ground generative models in enterprise truth via vector search.",
+      "Security: Do not train models on sensitive PII without strict anonymization.",
+      "Agentic Workflows: Give LLMs tools to perform actions and query APIs."
+    ]
+  },
+  "iac-native": {
+    "title": "Native IaC Frameworks",
+    "subtitle": "Provider-specific declarative infrastructure automation.",
+    "intro": "Native Infrastructure as Code frameworks like AWS CloudFormation, Azure Bicep, and GCP Deployment Manager are deeply integrated with their respective clouds. They offer day-zero support for new features and seamless IAM integration, making them ideal for single-cloud deployments.",
+    "video_url": "https://www.youtube.com/embed/K8qYQZ5y9aM",
+    "blogs": [
+      {
+        "title": "Scaling with AWS CloudFormation StackSets",
+        "url": "#",
+        "snippet": "Deploying infrastructure across multiple AWS accounts and regions from a centralized administrator account."
+      }
+    ],
+    "key_takeaways": [
+      "Deep Integration: Day-zero support for new provider features.",
+      "State Management: Managed transparently by the cloud provider.",
+      "Lock-in: Configurations are not portable across different clouds."
+    ]
+  },
+  "iac-agnostic": {
+    "title": "Agnostic IaC Platforms",
+    "subtitle": "Multi-cloud provider architecture with robust remote state management.",
+    "intro": "Cloud-agnostic tools like Terraform, Pulumi, and Ansible provide a unified language or workflow for managing multiple cloud providers and SaaS products. They utilize a provider-plugin model and require managing remote state files securely (e.g., in an S3 bucket with DynamoDB locking).",
+    "video_url": "https://www.youtube.com/embed/l5k1aiIGfSc",
+    "blogs": [
+      {
+        "title": "Terraform Modules & Best Practices",
+        "url": "#",
+        "snippet": "Building reusable, scalable IaC. Learn to break down massive monoliths into logical, independent modules."
+      }
+    ],
+    "key_takeaways": [
+      "Multi-Cloud: Unified syntax (like HCL) across AWS, Azure, GCP, and Kubernetes.",
+      "State Tracking: Requires configuring secure remote state backends.",
+      "Ecosystem: Massive community registry for pre-built modules."
+    ]
+  },
+  "iac-pitfalls": {
+    "title": "IaC Critical Pitfalls",
+    "subtitle": "Avoid manual clicks, massive states, and hardcoded secrets.",
+    "intro": "Mismanaging IaC leads to 'drift' (when cloud reality doesn't match the code), security breaches via hardcoded credentials, and deployment bottlenecks caused by monolithic state files. Adhering to modular design and automated CI/CD checks is critical for mature IaC operations.",
+    "video_url": "https://www.youtube.com/embed/L1W0B5Z8Cbc",
+    "blogs": [
+      {
+        "title": "13 Biggest Terraform Challenges & Pitfalls",
+        "url": "#",
+        "snippet": "A deep dive into avoiding excessively large Terraform states, hardcoding credentials, and ignoring lifecycle configuration drift."
+      },
+      {
+        "title": "Infrastructure as Code Anti-Patterns",
+        "url": "#",
+        "snippet": "Why you should never skip 'terraform plan' and how to set up automated drift detection in CI/CD."
+      }
+    ],
+    "key_takeaways": [
+      "Drift: Always enforce changes through code. Restrict direct console access.",
+      "Security: Use OIDC or Vault; never hardcode secrets in repository files.",
+      "Architecture: Split state files by environment and logical domain to limit blast radius."
+    ]
+  }
+}

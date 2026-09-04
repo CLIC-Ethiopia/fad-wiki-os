@@ -16,10 +16,17 @@ export interface BacklinkStat {
   count: number;
 }
 
+export interface CategoryStat {
+  name: string;
+  count: number;
+}
+
 export interface WikiStats {
   total_pages: number;
   total_words: number;
   top_backlinks: BacklinkStat[];
+  categories?: CategoryStat[];
+  total_notes?: number;
 }
 
 export interface WikiHeading {

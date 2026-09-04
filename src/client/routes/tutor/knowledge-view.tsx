@@ -10,6 +10,7 @@ import {
   CheckCircle2, AlertCircle, GraduationCap
 } from "lucide-react";
 import { useTutorStore } from "../../store/tutor-store";
+import { TutorFooter } from "./tutor-footer";
 
 /* ── 7 STEAM-IE Module Definitions ── */
 
@@ -728,13 +729,7 @@ export function Component() {
                   </div>
 
                   {/* Footer */}
-                  <div className="mt-12 text-center pb-8">
-                    <div className="inline-flex items-center gap-2 text-zinc-600 text-xs">
-                      <span className="w-8 h-px bg-zinc-800" />
-                      Fad Tutor · {activeModule.name} Module · STEAM-IE
-                      <span className="w-8 h-px bg-zinc-800" />
-                    </div>
-                  </div>
+                  <TutorFooter />
                 </div>
               ) : (
                 /* Empty state — no page selected */

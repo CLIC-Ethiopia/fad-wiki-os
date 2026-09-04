@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { TutorFooter } from "./tutor-footer";
 
 export function Component() {
   const [content, setContent] = useState("# Innovation Strategies in Tech\n\n1. **Design Thinking**: Empathize, Define, Ideate, Prototype, Test.\n2. **Agile Methodology**: Iterative development, continuous feedback.\n\n*Note to self: Ask the tutor about the application of these in Healthcare.*");
@@ -66,7 +67,7 @@ export function Component() {
   };
 
   return (
-    <div className="flex-1 flex flex-col h-full bg-zinc-950 text-zinc-50 p-8">
+    <div className="flex-1 flex flex-col h-full bg-zinc-950 text-zinc-50 p-8 overflow-y-auto">
       <div className="max-w-5xl mx-auto w-full h-full flex flex-col space-y-6">
 
         <div className="flex items-end justify-between shrink-0">
@@ -121,6 +122,7 @@ export function Component() {
           />
         </div>
 
+        <TutorFooter />
       </div>
 
       {/* Open Note Modal */}

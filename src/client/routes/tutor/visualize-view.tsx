@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { useTutorStore } from "../../store/tutor-store";
 import { DiagramRenderer } from "./diagram-renderer";
 import { MarkdownRenderer } from "./markdown-renderer";
+import { TutorFooter } from "./tutor-footer";
 
 interface VisualizeResult {
   title: string;
@@ -501,6 +502,7 @@ export function Component() {
           </div>
         )}
 
+        <TutorFooter />
       </div>
 
       {/* Save Note Modal */}

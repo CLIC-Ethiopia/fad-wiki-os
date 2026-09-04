@@ -13,8 +13,10 @@ import {
   AlertCircle,
   Settings,
   Trash2,
-  ListTodo
+  ListTodo,
+  FileCheck2
 } from "lucide-react";
+import { TutorFooter } from "./tutor-footer";
 import { Link } from "react-router-dom";
 
 interface HourAllocation {
@@ -566,6 +568,8 @@ export function Component() {
             </div>
           </div>
         )}
+
+        <TutorFooter />
       </div>
 
       {/* 5. Week Detail Interactive Modal */}

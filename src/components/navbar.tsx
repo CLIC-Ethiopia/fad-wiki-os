@@ -4,6 +4,7 @@ import {
   BookOpen,
   Brain,
   GraduationCap,
+  HelpCircle,
   PlusCircle,
   RefreshCw,
   Sparkles,
@@ -214,6 +215,16 @@ export function Navbar({
             className="rounded-lg text-white font-medium text-sm transition-all bg-gradient-to-r from-purple-700 to-rose-600 hover:from-purple-800 hover:to-rose-700 px-3.5 py-2 shadow-md hover:shadow-lg active:scale-95"
           >
             {config.navigation.statsLabel || "Stats"}
+          </Link>
+
+          {/* Button 8: Help Guide */}
+          <Link
+            to="/help"
+            className="flex items-center gap-1.5 rounded-lg text-white font-medium text-sm transition-all bg-gradient-to-r from-cyan-600 via-teal-600 to-emerald-600 hover:from-cyan-500 hover:via-teal-500 hover:to-emerald-500 px-3.5 py-2 shadow-md hover:shadow-lg active:scale-95 border border-white/10"
+            title="System Documentation & Navigation Manual"
+          >
+            <HelpCircle className="h-4 w-4 text-cyan-200" />
+            <span className="hidden sm:inline">Help</span>
           </Link>
 
           {extraRightContent}

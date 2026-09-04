@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useTutorStore } from "../../store/tutor-store";
 import { MarkdownRenderer } from "./markdown-renderer";
+import { TutorFooter } from "./tutor-footer";
 
 interface ToolStep {
   name: string;
@@ -323,6 +324,7 @@ export function Component() {
           </div>
         )}
 
+        <TutorFooter />
       </div>
 
       {/* Save Note Modal */}

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useTutorStore } from "../../store/tutor-store";
 import { MarkdownRenderer } from "./markdown-renderer";
+import { TutorFooter } from "./tutor-footer";
 
 interface Flashcard {
   id: number;
@@ -169,6 +170,8 @@ export function Component() {
               </button>
             </div>
           </div>
+
+          <TutorFooter />
         </div>
       </div>
     );
@@ -319,6 +322,7 @@ export function Component() {
 
         </div>
 
+        <TutorFooter />
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useTutorStore } from "../../store/tutor-store";
 import { MarkdownRenderer } from "./markdown-renderer";
+import { TutorFooter } from "./tutor-footer";
 
 export function Component() {
   const { settings, cowriterDocument: document, setCowriterDocument: setDocument } = useTutorStore();
@@ -203,7 +204,7 @@ export function Component() {
   ];
 
   return (
-    <div className="flex-1 flex flex-col h-full bg-zinc-950 text-zinc-50 p-6 sm:p-8 overflow-hidden">
+    <div className="flex-1 flex flex-col h-full bg-zinc-950 text-zinc-50 p-6 sm:p-8 overflow-y-auto">
       <div className="max-w-7xl mx-auto w-full h-full flex flex-col space-y-4">
         
         {/* Header */}
@@ -361,6 +362,7 @@ export function Component() {
 
         </div>
 
+        <TutorFooter />
       </div>
 
       {/* ── Save Note Modal ── */}

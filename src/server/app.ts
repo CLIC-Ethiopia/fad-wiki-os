@@ -389,6 +389,16 @@ export async function buildServer({
     }
   });
 
+  app.get("/api/help", async (_request, reply) => {
+    try {
+      const helpPath = path.resolve(process.cwd(), "help.md");
+      const content = await fs.readFile(helpPath, "utf-8");
+      return { content };
+    } catch (error) {
+      return reply.code(500).send({ error: errorMessage(error, "Failed to load help file") });
+    }
+  });
+
   app.get("/api/graph", async (_request, reply) => {
     try {
       return await getGraphData();

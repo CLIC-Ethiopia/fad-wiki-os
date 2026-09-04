@@ -22,6 +22,10 @@ export const router = createBrowserRouter([
     lazy: () => import("./routes/knowledge-center-route"),
   },
   {
+    path: "/help",
+    lazy: () => import("./routes/help-route"),
+  },
+  {
     path: "/wiki/*",
     lazy: () => import("./routes/wiki-route"),
   },

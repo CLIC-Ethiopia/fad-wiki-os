@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
-import { BookOpen, FileText, Share2, ArrowLeft, Search, RefreshCw, GraduationCap } from "lucide-react";
+import { BookOpen, FileText, Share2, ArrowLeft, Search, RefreshCw, GraduationCap, Sun, Moon } from "lucide-react";
 import { useWikiConfig } from "@/client/wiki-config";
 import { Navbar } from "@/components/navbar";
 import { RouteErrorBoundary } from "../route-error-boundary";
@@ -486,6 +486,7 @@ export function Component() {
   const [fileContent, setFileContent] = useState<any | null>(null);
   const [loadingContent, setLoadingContent] = useState(false);
   const [detailTab, setDetailTab] = useState<"content" | "graph">("content");
+  const [readerTheme, setReaderTheme] = useState<"light" | "dark">("light");
   
   // File search in sidebar
   const [sidebarQuery, setSidebarQuery] = useState("");
@@ -534,7 +535,7 @@ export function Component() {
     }
 
     return graphData.nodes.filter((node) => {
-      const matchesCategory = node.categories.some((cat) => cat.toLowerCase() === target);
+      const matchesCategory = node.categories.some((cat: string) => cat.toLowerCase() === target);
       const matchesFolder = node.slug.toLowerCase().startsWith(target + "/");
       return matchesCategory || matchesFolder;
     });
@@ -828,13 +829,15 @@ export function Component() {
               {/* Right Column: Tabbed Content Panel */}
               <main className="flex-1 flex flex-col min-h-0 bg-zinc-950">
                 {/* Tabs selection bar */}
-                <div className="px-6 py-2 bg-zinc-900/20 border-b border-zinc-800/40 flex items-center justify-between shrink-0">
+                <div className="px-6 py-2 bg-zinc-900/40 border-b border-zinc-800/60 flex items-center justify-between shrink-0">
                   <div className="flex gap-1.5">
                     <button
                       onClick={() => setDetailTab("content")}
-                      className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold transition-all ${
+                      className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all ${
                         detailTab === "content"
-                          ? "bg-zinc-800 text-white shadow-sm"
+                          ? readerTheme === "light"
+                            ? "bg-white text-zinc-900 shadow-sm"
+                            : "bg-zinc-800 text-white shadow-sm"
                           : "text-zinc-400 hover:text-zinc-200"
                       }`}
                     >
@@ -843,7 +846,7 @@ export function Component() {
                     </button>
                     <button
                       onClick={() => setDetailTab("graph")}
-                      className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold transition-all ${
+                      className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all ${
                         detailTab === "graph"
                           ? "bg-zinc-800 text-white shadow-sm"
                           : "text-zinc-400 hover:text-zinc-200"
@@ -854,68 +857,213 @@ export function Component() {
                     </button>
                   </div>
 
-                  {selectedFileSlug && (
-                    <div className="text-xs text-zinc-500 font-mono select-all select-none">
-                      {selectedFileSlug}.md
-                    </div>
-                  )}
+                  <div className="flex items-center gap-3">
+                    {detailTab === "content" && (
+                      <button
+                        onClick={() => setReaderTheme((t) => (t === "light" ? "dark" : "light"))}
+                        className="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium text-zinc-300 hover:text-white bg-zinc-900/80 hover:bg-zinc-800 border border-zinc-800 transition-colors"
+                        title={`Switch to ${readerTheme === "light" ? "Dark" : "Light"} background`}
+                      >
+                        {readerTheme === "light" ? (
+                          <>
+                            <Moon className="w-3.5 h-3.5 text-zinc-400" />
+                            <span className="hidden sm:inline">Dark view</span>
+                          </>
+                        ) : (
+                          <>
+                            <Sun className="w-3.5 h-3.5 text-amber-400" />
+                            <span className="hidden sm:inline">Light view</span>
+                          </>
+                        )}
+                      </button>
+                    )}
+
+                    {selectedFileSlug && (
+                      <div className="text-xs text-zinc-500 font-mono select-all select-none">
+                        {selectedFileSlug}.md
+                      </div>
+                    )}
+                  </div>
                 </div>
 
                 {/* Tab content displays */}
-                <div className="flex-1 min-h-0 p-6 overflow-y-auto">
+                <div
+                  className={`flex-1 min-h-0 overflow-y-auto ${
+                    detailTab === "content"
+                      ? readerTheme === "light"
+                        ? "bg-slate-100/90 p-4 sm:p-8"
+                        : "bg-zinc-950 p-6"
+                      : "p-6"
+                  }`}
+                >
                   {detailTab === "content" ? (
                     /* Tab 1: Page Content Reader */
-                    <div className="max-w-3xl mx-auto h-full">
+                    <div className="max-w-4xl mx-auto min-h-full">
                       {loadingContent ? (
                         /* Content Shimmer loader */
-                        <div className="space-y-4 animate-pulse">
-                          <div className="h-8 w-2/3 bg-zinc-900 rounded-lg" />
-                          <div className="h-4 w-1/4 bg-zinc-900 rounded" />
-                          <div className="h-px bg-zinc-900 my-6" />
-                          <div className="h-4 w-full bg-zinc-900 rounded" />
-                          <div className="h-4 w-full bg-zinc-900 rounded" />
-                          <div className="h-4 w-5/6 bg-zinc-900 rounded" />
+                        <div
+                          className={`rounded-2xl p-8 sm:p-12 shadow-sm border ${
+                            readerTheme === "light"
+                              ? "bg-white border-slate-200/90"
+                              : "bg-zinc-900/50 border-zinc-800"
+                          }`}
+                        >
+                          <div className="space-y-4 animate-pulse">
+                            <div className={`h-8 w-2/3 rounded-lg ${readerTheme === "light" ? "bg-zinc-200" : "bg-zinc-800"}`} />
+                            <div className={`h-4 w-1/4 rounded ${readerTheme === "light" ? "bg-zinc-200" : "bg-zinc-800"}`} />
+                            <div className={`h-px my-6 ${readerTheme === "light" ? "bg-zinc-200" : "bg-zinc-800"}`} />
+                            <div className={`h-4 w-full rounded ${readerTheme === "light" ? "bg-zinc-200" : "bg-zinc-800"}`} />
+                            <div className={`h-4 w-full rounded ${readerTheme === "light" ? "bg-zinc-200" : "bg-zinc-800"}`} />
+                            <div className={`h-4 w-5/6 rounded ${readerTheme === "light" ? "bg-zinc-200" : "bg-zinc-800"}`} />
+                          </div>
                         </div>
                       ) : fileContent ? (
-                        <article className="prose-wiki prose-invert pb-16">
-                          <h1 className="text-4xl font-display font-light text-white mb-2 leading-tight">
-                            {fileContent.title}
-                          </h1>
-                          <div className="flex items-center gap-2 text-xs text-zinc-500 mb-6">
-                            <span>
-                              {Math.max(1, Math.round(fileContent.contentMarkdown.split(/\s+/).length / 200))} min read
-                            </span>
-                            <span>·</span>
-                            <span>{fileContent.contentMarkdown.split(/\s+/).length.toLocaleString()} words</span>
-                            <span>·</span>
-                            <Link to={`/wiki/${fileContent.slug}`} className="underline text-indigo-400 hover:text-indigo-300">
-                              Open in Wiki Hub
-                            </Link>
-                          </div>
-                          
-                          <div className="h-px bg-zinc-800/80 mb-8" />
-                          
-                          <ReactMarkdown
-                            remarkPlugins={[remarkGfm]}
-                            rehypePlugins={[rehypeHighlight]}
-                            components={{
-                              h1: ({ ...props }) => <h1 className="text-2xl font-display font-light mb-4 mt-8 text-white border-b border-zinc-800/60 pb-2" {...props} />,
-                              h2: ({ ...props }) => <h2 className="text-xl font-display font-light mb-3 mt-6 text-zinc-100" {...props} />,
-                              h3: ({ ...props }) => <h3 className="text-lg font-display font-light mb-2 mt-5 text-zinc-200" {...props} />,
-                              p: ({ ...props }) => <p className="mb-4 text-zinc-300 leading-relaxed text-sm" {...props} />,
-                              ul: ({ ...props }) => <ul className="mb-4 list-disc pl-5 space-y-1 text-sm text-zinc-300" {...props} />,
-                              ol: ({ ...props }) => <ol className="mb-4 list-decimal pl-5 space-y-1 text-sm text-zinc-300" {...props} />,
-                              li: ({ ...props }) => <li className="leading-relaxed" {...props} />,
-                              code: ({ ...props }) => <code className="bg-zinc-900 border border-zinc-800 text-indigo-300 rounded px-1.5 py-0.5 text-xs font-mono" {...props} />,
-                              pre: ({ ...props }) => <pre className="bg-zinc-900/60 border border-zinc-800/80 rounded-xl p-4 overflow-x-auto my-4 font-mono text-xs text-zinc-300" {...props} />,
-                            }}
-                          >
-                            {fileContent.contentMarkdown}
-                          </ReactMarkdown>
-                        </article>
+                        <div
+                          className={`rounded-2xl shadow-sm border p-6 sm:p-12 min-h-full ${
+                            readerTheme === "light"
+                              ? "bg-white border-slate-200/90 text-zinc-900"
+                              : "bg-zinc-900/70 border-zinc-800 text-zinc-100"
+                          }`}
+                        >
+                          <article className={`prose-wiki max-w-none pb-16 ${readerTheme === "dark" ? "prose-invert" : ""}`}>
+                            <h1
+                              className={`text-3xl sm:text-4xl font-display font-light mb-2 leading-tight ${
+                                readerTheme === "light" ? "text-zinc-900" : "text-white"
+                              }`}
+                            >
+                              {fileContent.title}
+                            </h1>
+                            <div
+                              className={`flex items-center gap-2 text-xs mb-6 flex-wrap ${
+                                readerTheme === "light" ? "text-zinc-500" : "text-zinc-400"
+                              }`}
+                            >
+                              <span>
+                                {Math.max(1, Math.round(fileContent.contentMarkdown.split(/\s+/).length / 200))} min read
+                              </span>
+                              <span>·</span>
+                              <span>{fileContent.contentMarkdown.split(/\s+/).length.toLocaleString()} words</span>
+                              <span>·</span>
+                              <Link
+                                to={`/wiki/${fileContent.slug}`}
+                                className={`underline font-medium ${
+                                  readerTheme === "light"
+                                    ? "text-indigo-600 hover:text-indigo-800"
+                                    : "text-indigo-400 hover:text-indigo-300"
+                                }`}
+                              >
+                                Open in Wiki Hub
+                              </Link>
+                            </div>
+
+                            <div className={`h-px mb-8 ${readerTheme === "light" ? "bg-zinc-200" : "bg-zinc-800/80"}`} />
+
+                            <ReactMarkdown
+                              remarkPlugins={[remarkGfm]}
+                              rehypePlugins={[rehypeHighlight]}
+                              components={
+                                readerTheme === "light"
+                                  ? {
+                                      h1: ({ ...props }) => (
+                                        <h1 className="text-2xl font-display font-normal mb-4 mt-8 text-zinc-900 border-b border-zinc-200 pb-2" {...props} />
+                                      ),
+                                      h2: ({ ...props }) => (
+                                        <h2 className="text-xl font-display font-normal mb-3 mt-6 text-zinc-900 border-b border-zinc-100 pb-1.5" {...props} />
+                                      ),
+                                      h3: ({ ...props }) => (
+                                        <h3 className="text-lg font-display font-medium mb-2 mt-5 text-zinc-900" {...props} />
+                                      ),
+                                      h4: ({ ...props }) => (
+                                        <h4 className="text-base font-semibold mb-2 mt-4 text-zinc-900" {...props} />
+                                      ),
+                                      p: ({ ...props }) => (
+                                        <p className="mb-4 text-zinc-800 leading-relaxed text-[15px]" {...props} />
+                                      ),
+                                      ul: ({ ...props }) => (
+                                        <ul className="mb-4 list-disc pl-6 space-y-1 text-[15px] text-zinc-800" {...props} />
+                                      ),
+                                      ol: ({ ...props }) => (
+                                        <ol className="mb-4 list-decimal pl-6 space-y-1 text-[15px] text-zinc-800" {...props} />
+                                      ),
+                                      li: ({ ...props }) => (
+                                        <li className="leading-relaxed text-zinc-800" {...props} />
+                                      ),
+                                      code: ({ ...props }) => (
+                                        <code className="bg-zinc-100 border border-zinc-200 text-purple-700 rounded px-1.5 py-0.5 text-xs font-mono font-medium" {...props} />
+                                      ),
+                                      pre: ({ ...props }) => (
+                                        <pre className="bg-zinc-900 border border-zinc-800 text-zinc-100 rounded-xl p-4 overflow-x-auto my-4 font-mono text-xs shadow-inner" {...props} />
+                                      ),
+                                      blockquote: ({ ...props }) => (
+                                        <blockquote className="border-l-4 border-indigo-500 bg-indigo-50/70 text-zinc-700 px-4 py-2 my-4 rounded-r-lg italic" {...props} />
+                                      ),
+                                      table: ({ ...props }) => (
+                                        <div className="my-4 overflow-x-auto rounded-lg border border-zinc-200">
+                                          <table className="w-full border-collapse text-sm text-zinc-800" {...props} />
+                                        </div>
+                                      ),
+                                      th: ({ ...props }) => (
+                                        <th className="border-b border-zinc-200 bg-zinc-100 p-2.5 text-left font-semibold text-zinc-900" {...props} />
+                                      ),
+                                      td: ({ ...props }) => (
+                                        <td className="border-b border-zinc-100 p-2.5 text-zinc-700" {...props} />
+                                      ),
+                                      a: ({ ...props }) => (
+                                        <a className="text-indigo-600 hover:text-indigo-800 underline underline-offset-2 font-medium" {...props} />
+                                      ),
+                                      hr: ({ ...props }) => (
+                                        <hr className="my-6 border-zinc-200" {...props} />
+                                      ),
+                                      strong: ({ ...props }) => (
+                                        <strong className="font-semibold text-zinc-900" {...props} />
+                                      ),
+                                    }
+                                  : {
+                                      h1: ({ ...props }) => (
+                                        <h1 className="text-2xl font-display font-light mb-4 mt-8 text-white border-b border-zinc-800/60 pb-2" {...props} />
+                                      ),
+                                      h2: ({ ...props }) => (
+                                        <h2 className="text-xl font-display font-light mb-3 mt-6 text-zinc-100" {...props} />
+                                      ),
+                                      h3: ({ ...props }) => (
+                                        <h3 className="text-lg font-display font-light mb-2 mt-5 text-zinc-200" {...props} />
+                                      ),
+                                      p: ({ ...props }) => (
+                                        <p className="mb-4 text-zinc-300 leading-relaxed text-sm" {...props} />
+                                      ),
+                                      ul: ({ ...props }) => (
+                                        <ul className="mb-4 list-disc pl-5 space-y-1 text-sm text-zinc-300" {...props} />
+                                      ),
+                                      ol: ({ ...props }) => (
+                                        <ol className="mb-4 list-decimal pl-5 space-y-1 text-sm text-zinc-300" {...props} />
+                                      ),
+                                      li: ({ ...props }) => (
+                                        <li className="leading-relaxed" {...props} />
+                                      ),
+                                      code: ({ ...props }) => (
+                                        <code className="bg-zinc-900 border border-zinc-800 text-indigo-300 rounded px-1.5 py-0.5 text-xs font-mono" {...props} />
+                                      ),
+                                      pre: ({ ...props }) => (
+                                        <pre className="bg-zinc-900/60 border border-zinc-800/80 rounded-xl p-4 overflow-x-auto my-4 font-mono text-xs text-zinc-300" {...props} />
+                                      ),
+                                    }
+                              }
+                            >
+                              {fileContent.contentMarkdown}
+                            </ReactMarkdown>
+                          </article>
+                        </div>
                       ) : (
-                        <div className="text-center py-20 text-zinc-600">
-                          Select a file in the list to view its content.
+                        <div
+                          className={`text-center py-20 rounded-2xl border ${
+                            readerTheme === "light"
+                              ? "bg-white border-slate-200/90 text-zinc-500 shadow-sm"
+                              : "bg-zinc-900/30 border-zinc-800/40 text-zinc-500"
+                          }`}
+                        >
+                          <FileText className={`w-8 h-8 mx-auto mb-3 ${readerTheme === "light" ? "text-zinc-400" : "text-zinc-600"}`} />
+                          <p className="text-sm font-medium">Select a document from the sidebar to view its content.</p>
+                          <p className="text-xs text-zinc-400 mt-1">Browse through categories or search above</p>
                         </div>
                       )}
                     </div>

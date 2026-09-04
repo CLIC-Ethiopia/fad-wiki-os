@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { TutorFooter } from "./tutor-footer";
 
 const guideCards = [
   {
@@ -228,14 +229,7 @@ export function Component() {
           ))}
         </div>
 
-        {/* Footer Note */}
-        <div className="mt-10 text-center">
-          <div className="inline-flex items-center gap-2 text-zinc-600 text-xs">
-            <span className="w-8 h-px bg-zinc-800" />
-            Fad Tutor · STEAM-IE Smart Education Lab
-            <span className="w-8 h-px bg-zinc-800" />
-          </div>
-        </div>
+        <TutorFooter />
       </div>
     </div>
   );
