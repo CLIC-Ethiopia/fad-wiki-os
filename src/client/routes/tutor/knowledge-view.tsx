@@ -348,7 +348,7 @@ export function Component() {
   const totalCompleted = Object.values(moduleCompleted).reduce((a, b) => a + b, 0);
 
   return (
-    <div className="flex-1 flex flex-col h-full bg-zinc-950 text-zinc-50 overflow-hidden">
+    <div className="flex-1 flex flex-col h-full bg-zinc-950 text-zinc-50 overflow-y-auto">
 
       {/* ── Hero Banner (Info-tab style) ── */}
       <div className="relative overflow-hidden shrink-0">
@@ -425,7 +425,7 @@ export function Component() {
       )}
 
       {/* ── Main 2-Column Layout ── */}
-      <div className="flex-1 flex min-h-0 overflow-hidden">
+      <div className="flex h-[calc(100vh-4rem)]">
 
         {/* Left Sidebar: Module Navigator */}
         <aside className="w-72 border-r border-zinc-800/60 flex flex-col min-h-0 bg-zinc-900/20 shrink-0">

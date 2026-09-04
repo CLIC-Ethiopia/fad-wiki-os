@@ -81,9 +81,7 @@ function splitBrandTitle(title: string) {
     lead: words.slice(0, -1).join(" "),
     accent: words[words.length - 1] ?? "",
   };
-} import { WebClipperModal } from "./web-clipper-modal";
-import { RecommenderModal } from "./recommender-modal";
-import { BookOpen, PlusCircle, Sparkles } from "lucide-react";
+} import { Navbar } from "./navbar";
 
 export function SearchBox({
   totalPages,
@@ -92,18 +90,10 @@ export function SearchBox({
   totalPages: number;
   children: ReactNode;
 }) {
-  const config = useWikiConfig();
-  const { revalidate, state: revalidationState } = useRevalidator();
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<SearchResult[] | null>(null);
   const [isSearching, setIsSearching] = useState(false);
   const [searchError, setSearchError] = useState<string | null>(null);
-  const [isRefreshing, setIsRefreshing] = useState(false);
-
-  const [showWebClipper, setShowWebClipper] = useState(false);
-  const [clipperInitialUrl, setClipperInitialUrl] = useState("");
-  const [clipperInitialFolder, setClipperInitialFolder] = useState("/");
-  const [showRecommender, setShowRecommender] = useState(false);
 
   const abortRef = useRef<AbortController | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -186,151 +176,56 @@ export function SearchBox({
 
   const hasQuery = query.trim().length > 0;
   const showResults = hasQuery;
-  const isRevalidating = revalidationState === "loading";
-  const refreshBusy = isRefreshing || isRevalidating;
-  const brandTitle = splitBrandTitle(config.siteTitle);
-
-  const handleRefresh = async () => {
-    if (refreshBusy) return;
-
-    setIsRefreshing(true);
-
-    try {
-      // Force a fresh server snapshot when admin reindex is available.
-      const response = await fetch("/api/admin/reindex", { method: "POST" });
-      if (!response.ok) {
-        throw new Error("Manual reindex unavailable");
-      }
-      revalidate();
-    } catch {
-      // If reindex call fails, still revalidate loader data for latest view.
-      revalidate();
-    } finally {
-      setIsRefreshing(false);
-    }
-  };
+  const brandTitle = splitBrandTitle(useWikiConfig().siteTitle);
 
   return (
-    <div className="relative flex min-h-screen flex-col">
-      {showWebClipper && (
-        <WebClipperModal
-          onClose={() => {
-            setShowWebClipper(false);
-            setClipperInitialUrl("");
-            setClipperInitialFolder("/");
-          }}
-          onRefresh={handleRefresh}
-          initialUrl={clipperInitialUrl}
-          initialFolder={clipperInitialFolder}
-          isStacked={showRecommender}
-        />
-      )}
-      {showRecommender && (
-        <RecommenderModal
-          onClose={() => setShowRecommender(false)}
-          onClipSource={(url, folder) => {
-            setClipperInitialUrl(url);
-            setClipperInitialFolder(folder);
-            setShowWebClipper(true);
-          }}
-        />
-      )}
-      <header className="sticky top-0 z-50 bg-[var(--background)]/85 backdrop-blur-md border-b border-[var(--border)] flex items-center justify-between gap-2 px-4 py-3 sm:px-6 transition-all duration-300 relative">
-        <div className="flex items-center gap-4">
-          <Link
-            to="/"
-            className={`font-display text-lg text-[var(--foreground)] transition-opacity duration-200 sm:text-xl ${showResults ? "opacity-100" : "opacity-0 pointer-events-none"
-              }`}
-            onClick={(event) => {
-              event.preventDefault();
-              resetSearch();
-            }}
-          >
-            {config.siteTitle}
-          </Link>
-
-          <button
-            onClick={() => setShowWebClipper(true)}
-            className="flex items-center gap-2 text-sm font-medium text-white transition-all bg-gradient-to-r from-purple-700 to-rose-600 hover:from-purple-800 hover:to-rose-700 px-4 py-2 rounded-lg shadow-md hover:shadow-lg active:scale-95"
-          >
-            <PlusCircle className="h-4 w-4" />
-            <span className="hidden sm:inline">Add new source</span>
-          </button>
-
-          <button
-            onClick={() => setShowRecommender(true)}
-            className="flex items-center gap-2 text-sm font-medium text-white transition-all bg-gradient-to-r from-purple-700 to-rose-600 hover:from-purple-800 hover:to-rose-700 px-4 py-2 rounded-lg shadow-md hover:shadow-lg active:scale-95"
-          >
-            <Sparkles className="h-4 w-4" />
-            <span className="hidden sm:inline">Recommender Engine</span>
-          </button>
+    <div className="relative flex min-h-screen flex-col bg-zinc-950 text-zinc-50 overflow-hidden">
+      {/* Background Ambient Glow */}
+      {!showResults && (
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+          <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-gradient-to-b from-purple-900/30 via-indigo-900/15 to-transparent rounded-full blur-3xl opacity-70" />
         </div>
+      )}
 
-        <Link
-          to="/knowledge-center"
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-2 text-sm font-semibold text-white transition-all px-5 py-2.5 rounded-xl shadow-lg hover:shadow-xl active:scale-95 overflow-hidden group z-10"
-          style={{
-            background: "linear-gradient(135deg, #4f46e5 0%, #7c3aed 40%, #10b981 100%)",
-          }}
-        >
-          <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
-          <BookOpen className="h-4 w-4 relative z-10" />
-          <span className="hidden sm:inline relative z-10">Knowledge Center</span>
-        </Link>
-
-        <div className="flex items-center gap-1.5 sm:gap-2.5">
-          <Link
-            to="/tutor"
-            className="flex items-center gap-2 rounded-lg text-white font-medium text-sm transition-all bg-gradient-to-r from-purple-700 to-rose-600 hover:from-purple-800 hover:to-rose-700 px-4 py-2 shadow-md hover:shadow-lg active:scale-95"
-          >
-            <GraduationCap className="h-4 w-4" />
-            <span className="hidden sm:inline">Fad.Tutor</span>
-          </Link>
-          <button
-            type="button"
-            onClick={handleRefresh}
-            disabled={refreshBusy}
-            title="Refresh wiki count"
-            className="flex items-center gap-1.5 rounded-lg text-white transition-all bg-gradient-to-r from-purple-700 to-rose-600 hover:from-purple-800 hover:to-rose-700 px-4 py-2 text-xs shadow-md hover:shadow-lg active:scale-95 disabled:cursor-wait disabled:opacity-75 sm:gap-2"
-          >
-            <RefreshCw
-              className={`h-3.5 w-3.5 text-white ${refreshBusy ? "animate-spin" : ""}`}
-            />
-            <span className="font-semibold tabular-nums">
-              {totalPages.toLocaleString()}
-            </span>
-            <span className="hidden sm:inline">Articles</span>
-          </button>
-          <Link
-            to="/graph"
-            className="rounded-lg text-white font-medium text-sm transition-all bg-gradient-to-r from-purple-700 to-rose-600 hover:from-purple-800 hover:to-rose-700 px-4 py-2 shadow-md hover:shadow-lg active:scale-95"
-          >
-            {config.navigation.graphLabel}
-          </Link>
-          <Link
-            to="/stats"
-            className="rounded-lg text-white font-medium text-sm transition-all bg-gradient-to-r from-purple-700 to-rose-600 hover:from-purple-800 hover:to-rose-700 px-4 py-2 shadow-md hover:shadow-lg active:scale-95"
-          >
-            {config.navigation.statsLabel}
-          </Link>
-        </div>
-      </header>
+      <Navbar
+        totalPages={totalPages}
+        onBrandClick={(event) => {
+          if (window.location.pathname === "/") {
+            event.preventDefault();
+            resetSearch();
+          }
+        }}
+      />
 
       <main
-        className={`relative flex flex-1 flex-col items-center px-4 ${showResults ? "pt-2 sm:pt-4" : "pt-8 sm:pt-20"
-          }`}
+        className={`relative z-10 flex flex-1 flex-col items-center px-4 ${
+          showResults ? "pt-2 sm:pt-4" : "pt-8 sm:pt-16"
+        }`}
       >
         <div
-          className={`flex w-full max-w-7xl flex-col items-center gap-6 sm:gap-10 ${showResults ? "" : "animate-in"
-            }`}
+          className={`flex w-full max-w-7xl flex-col items-center gap-6 sm:gap-8 ${
+            showResults ? "" : "animate-in"
+          }`}
         >
           {!showResults && (
-            <h1 className="font-display text-[clamp(3.25rem,14vw,8rem)] leading-[0.95] tracking-[-0.035em] text-[var(--foreground)]" style={{ fontWeight: 300 }}>
-              {brandTitle.lead}
-              <span className="bg-gradient-to-r from-[var(--teal)] via-[var(--lavender)] to-[var(--peach)] bg-clip-text text-transparent" style={{ fontWeight: 400 }}>
-                {brandTitle.accent ?? ""}
-              </span>
-            </h1>
+            <div className="text-center flex flex-col items-center">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-500/15 border border-purple-500/25 text-purple-300 text-xs font-semibold uppercase tracking-widest mb-4 shadow-sm backdrop-blur-sm">
+                <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
+                STEAM-IE KNOWLEDGE VAULT & AI OS
+              </div>
+              <h1
+                className="font-display text-[clamp(3.5rem,12vw,7rem)] leading-[0.95] tracking-[-0.035em] text-white"
+                style={{ fontWeight: 300 }}
+              >
+                {brandTitle.lead}
+                <span
+                  className="bg-gradient-to-r from-teal-300 via-purple-300 to-rose-300 bg-clip-text text-transparent"
+                  style={{ fontWeight: 400 }}
+                >
+                  {brandTitle.accent ?? ""}
+                </span>
+              </h1>
+            </div>
           )}
 
           <div className="w-full max-w-xl">

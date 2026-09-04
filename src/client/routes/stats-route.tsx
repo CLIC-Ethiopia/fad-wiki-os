@@ -2,6 +2,7 @@ import { useLoaderData, Link, redirect } from "react-router-dom";
 import { BookOpen } from "lucide-react";
 
 import { useWikiConfig } from "@/client/wiki-config";
+import { Navbar } from "@/components/navbar";
 import type { WikiStats } from "@/lib/wiki-shared";
 import { ChangeVaultLink } from "@/components/change-vault-link";
 
@@ -58,41 +59,7 @@ export function Component() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="sticky top-0 z-50 bg-[var(--background)]/85 backdrop-blur-md border-b border-[var(--border)] flex items-center justify-between gap-2 px-4 py-3 sm:px-6 transition-all duration-300 relative">
-        <Link to="/" className="font-display text-lg text-[var(--foreground)] sm:text-xl">
-          {config.siteTitle}
-        </Link>
-        <Link
-          to="/knowledge-center"
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-2 text-sm font-semibold text-white transition-all px-5 py-2.5 rounded-xl shadow-lg hover:shadow-xl active:scale-95 overflow-hidden group z-10"
-          style={{
-            background: "linear-gradient(135deg, #4f46e5 0%, #7c3aed 40%, #10b981 100%)",
-          }}
-        >
-          <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
-          <BookOpen className="h-4 w-4 relative z-10" />
-          <span className="hidden sm:inline relative z-10">Knowledge Center</span>
-        </Link>
-        <div className="flex items-center gap-1.5 sm:gap-2.5">
-          <Link
-            to="/"
-            className="rounded-lg text-white font-medium text-sm transition-all bg-gradient-to-r from-purple-700 to-rose-600 hover:from-purple-800 hover:to-rose-700 px-4 py-2 shadow-md hover:shadow-lg active:scale-95"
-          >
-            {config.navigation.backToWikiLabel || "Back to Wiki"}
-          </Link>
-          <span className="hidden items-center gap-2 rounded-lg bg-gradient-to-r from-purple-700 to-rose-600 px-4 py-2 text-sm text-white font-semibold sm:flex shadow-md border border-white/10">
-            <span className="h-1.5 w-1.5 rounded-full bg-white shadow-sm" />
-            <span className="font-bold tabular-nums">
-              {stats.total_pages.toLocaleString()}
-            </span>
-            <span className="hidden sm:inline">Articles</span>
-          </span>
-          <span className="rounded-lg text-white font-medium text-sm transition-all bg-gradient-to-r from-purple-700 to-rose-600 px-4 py-2 shadow-md">
-            {config.navigation.statsLabel}
-          </span>
-          <ChangeVaultLink />
-        </div>
-      </header>
+      <Navbar totalPages={stats.total_pages} extraRightContent={<ChangeVaultLink />} />
 
       <main
         className="mx-auto w-full max-w-4xl px-4 pt-6 sm:px-6 sm:pt-10 lg:px-8"
